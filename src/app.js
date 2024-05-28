@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+//configuration middleware
 // Used to allow cross origins
 app.use(
     cors({
@@ -27,7 +28,6 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 //Routes import
-
 import userRouter from "./routes/user.routes.js";
 
 app.use("/api/v1/users", userRouter);
