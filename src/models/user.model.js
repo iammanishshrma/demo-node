@@ -43,8 +43,6 @@ const userSchema = new Schema(
         },
         refreshToken: {
             type: String,
-            required: true,
-            trim: true,
         },
     },
     {
@@ -54,7 +52,7 @@ const userSchema = new Schema(
 
 //Adding middleware to encrypt password before save
 userSchema.pre("save", async function (next) {
-    if (!this.modified("password")) {
+    if (!this.isModified("password")) {
         return next();
     }
     this.password = await bcrypt.hash(this.password, 12);
